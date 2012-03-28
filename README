@@ -3,11 +3,24 @@ Who knows a (few) package(s) in the future.
 
 Functions include
 
+Aqueous CO2 calculation
+   a translation of an equation produced by Yves Prairie @ UQAM
+      status: complete
+   a translation of a BASIC program written by Ernie Lewis
+      status: work in progress
+
+
 Data import functions
    to read .tps files produced by tpsDIG for morphometrics
+      status: complete
+      in need of generalization for inclusion in a package
    to read data produced by micro well plate readers
+      status: complete
+      in need of generalization for inclusion in a package
 
 Growth curve fitting functions recovering ecologicaly relavant parameters
   exponetial growth using nls
   logistic growth using nls
   logistic growth using likelihood
+  all status: complete
+      in need of generalization for inclusion in a package
