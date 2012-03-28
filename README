@@ -1,0 +1,13 @@
+A repository to store all my useful R functions.
+Who knows a (few) package(s) in the future.
+
+Functions include
+
+Data import functions
+   to read .tps files produced by tpsDIG for morphometrics
+   to read data produced by micro well plate readers
+
+Growth curve fitting functions recovering ecologicaly relavant parameters
+  exponetial growth using nls
+  logistic growth using nls
+  logistic growth using likelihood
