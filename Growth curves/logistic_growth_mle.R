@@ -5,13 +5,14 @@ logistic.growth.mle<-function(readings){
   fitted.readings<-readings
   
   #Log likelyhood function to be minimized
-  like.growth<-function(parameters=c(0.3, 1, 0.1,1), t, Nt){
+  like.growth<-function(parameters=c(0.3, 1, 0.1, 1, 1), t, Nt){
     
     #Parameter extraction
     K<-parameters[1]
     r<-parameters[2]
     N0<-parameters[3]
-    sd<-parameters[4]
+    alpha<-parameters[4]
+    beta<-parameters[5]
     
     #Logistic growth model
     growth<-(K*N0*exp(r*t) ) / (K + N0 * (exp(r*t)-1))
@@ -20,17 +21,17 @@ logistic.growth.mle<-function(readings){
     #log likelihood estimate
     #nomral distribution
     
-    likelihood<- -sum(dnorm(x=Nt, mean=growth, sd=sd, log=T))
+    likelihood<- -sum(dbeta(x=Nt, shape1=alpha, shape2=beta, log=T))
     
-    #Bounds
-    if(K > 0.9) likelihood <- 9 * 10^10
-    if(K < 0) likelihood <- 9 * 10^10
-    
-    if(r > 3) likelihood <- 9 * 10^10
-    if(K < 0) likelihood <- 9 * 10^10
-    
-    if(N0 > 0.2) likelihood <- 9 * 10^10
-    if(N0 < 0) likelihood <- 9 * 10^10
+#     #Bounds
+#     if(K > 0.9) likelihood <- 9 * 10^10
+#     if(K < 0) likelihood <- 9 * 10^10
+#     
+#     if(r > 3) likelihood <- 9 * 10^10
+#     if(K < 0) likelihood <- 9 * 10^10
+#     
+#     if(N0 > 0.2) likelihood <- 9 * 10^10
+#     if(N0 < 0) likelihood <- 9 * 10^10
     
     
     #logistic distribution
@@ -46,7 +47,7 @@ logistic.growth.mle<-function(readings){
     
   }
   
-  fit<-with(readings, optim(par=c(0.3, 1, 0.1,1),
+  fit<-with(readings, optim(par=c(0.3, 1, 0.1,1,1),
                             fn=like.growth,
                             t=Time,
                             Nt=ABS))
