@@ -33,5 +33,4 @@ get_doi<-function(username,
   
 }
 
-test<-get_doi(username="etienne.low-decarie@mail.mcgill.ca")
 
