@@ -1,4 +1,5 @@
-source("~/Documents/Useful-R-functions/Growth\ curves/logitnorm.R")
+library(devtools)
+source_url("https://raw.github.com/edielivon/Useful-R-functions/master/Growth%20curves/logitnorm.R")
 
 logistic.growth.mle<-function(readings){
   
