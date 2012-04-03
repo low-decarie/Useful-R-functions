@@ -9,7 +9,7 @@ exponential.growth.nls<-function(readings){
                       data=readings,
                       na.action=na.exclude))
   
-  if(class(culture.model)=="try-error"){
+  if(class(exp.model)=="try-error"){
     
     fitted.readings$N0<-NA
     fitted.readings$r<-NA
@@ -21,7 +21,7 @@ exponential.growth.nls<-function(readings){
     
     fitted.readings$N0<-exp.parameters[1]
     fitted.readings$r<-exp.parameters[2]
-    fitted.readings$predicted<-predict(culture.model)
+    fitted.readings$predicted<-predict(exp.model)
     
   }
   
