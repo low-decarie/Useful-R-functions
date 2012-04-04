@@ -1,3 +1,9 @@
+##########
+#
+# Time must start at values>0 (1) or Nt-N0 results in 0
+###########
+
+
 library(devtools)
 source_url("https://raw.github.com/edielivon/Useful-R-functions/master/Growth%20curves/logitnorm.R")
 
@@ -7,8 +13,10 @@ logistic.growth.mle<-function(readings){
   
   fitted.readings<-readings
   
+
+  
   #Log likelyhood function to be minimized
-  like.growth<-function(parameters=c(1, 1, 0.01,2), t, Nt, ABS){
+  like.growth<-function(parameters=c(2, 1, 0.01,2), t, Nt, ABS){
     
     #Parameter extraction
     K<-parameters[1]
@@ -19,7 +27,7 @@ logistic.growth.mle<-function(readings){
     
     #Logistic growth model
     Nt<-(K*N0*exp(r*t) ) / (K + N0 * (exp(r*t)-1))
-    #growth<-(N0*K) / (N0 + (K-N0)*exp(-r*t))  #Synonymous model
+    #Nt<-(N0*K) / (N0 + (K-N0)*exp(-r*t))  #Synonymous model
     
     #log likelihood estimate
     #nomral distribution
@@ -27,15 +35,15 @@ logistic.growth.mle<-function(readings){
     #does not work
     #likelihood<- -sum(dlogitnorm(q=(ABS-N0)/(K-N0), mu=((Nt-N0)-(K-N0)/2), sigma=beta, log=T))
     
-    #likelihood<- -sum(dnorm(x=logit((ABS-N0)/(K-N0)), mean=(Nt-N0)-(K-N0)/2, sd=beta, log=T))
-    
+    #likelihood<- -sum(dnorm(x=logit((ABS-N0)/(K-N0)), mean=logit((Nt-N0)/(K-N0)), sd=beta, log=T))
+
     likelihood<- -sum(dnorm(ABS, Nt, sd=beta, log=T))
     
     return(likelihood)
     
   }
   
-  fit<-with(readings, optim(par=c(1, 1, 0.01,2),
+  fit<-with(readings, optim(par=c(2, 1, 10^-10,2),
                             fn=like.growth,
                             t=Time,
                             ABS=ABS))
