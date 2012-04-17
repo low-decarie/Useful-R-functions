@@ -70,6 +70,6 @@ logistic.growth.mle<-function(readings){
   return(fitted.readings)
 }
 
-readings<-logistic.growth.mle(readings)
-with(readings, plot(predicted~ABS))
-abline(0,1)
+#readings<-logistic.growth.mle(readings)
+#with(readings, plot(predicted~ABS))
+#abline(0,1)
