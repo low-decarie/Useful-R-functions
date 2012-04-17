@@ -1,4 +1,4 @@
-logistic.growth.mle<-function(readings, printer=F){
+logistic.growth.mle.norm<-function(readings, printer=F){
   
   if(printer){print(unique(readings$culture))}
   
@@ -21,6 +21,12 @@ logistic.growth.mle<-function(readings, printer=F){
     #log likelihood estimate
     #nomral distribution
     likelihood<- -sum(dnorm(ABS, Nt, sd=sd, log=T))
+    
+    ## Sanity bounds
+    if(any(c(Nt<0,
+             Nt>1.5, 
+             K>1.5))){likelihood<-NA}
+    
     
     return(likelihood)
     

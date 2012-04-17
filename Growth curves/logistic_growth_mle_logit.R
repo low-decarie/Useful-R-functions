@@ -7,7 +7,7 @@
 library(devtools)
 source_url("https://raw.github.com/edielivon/Useful-R-functions/master/Growth%20curves/logitnorm.R")
 
-logistic.growth.mle<-function(readings){
+logistic.growth.mle.logit<-function(readings){
   
   print(unique(readings$culture))
   
