@@ -19,7 +19,7 @@ logistic.growth.mle.norm<-function(readings, printer=F){
     #Nt<-(N0*K) / (N0 + (K-N0)*exp(-r*t))  #Synonymous model
     
     #log likelihood estimate
-    #nomral distribution
+    #Nomral distribution
     likelihood<- -sum(dnorm(ABS, Nt, sd=sd, log=T))
     
     ## Sanity bounds
@@ -47,7 +47,7 @@ logistic.growth.mle.norm<-function(readings, printer=F){
   
   predicted<-(K*N0*exp(r*t) ) / (K + N0 * (exp(r*t)-1))
   
-  fitted.readings$No<-N0
+  fitted.readings$N0<-N0
   fitted.readings$K<-K
   fitted.readings$r<-r
   fitted.readings$predicted<-predicted

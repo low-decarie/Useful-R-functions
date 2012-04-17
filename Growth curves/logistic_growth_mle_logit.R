@@ -60,7 +60,7 @@ logistic.growth.mle.logit<-function(readings){
   
   predicted<-(K*N0*exp(r*t) ) / (K + N0 * (exp(r*t)-1))
   
-  fitted.readings$No<-N0
+  fitted.readings$N0<-N0
   fitted.readings$K<-K
   fitted.readings$r<-r
   fitted.readings$predicted<-predicted

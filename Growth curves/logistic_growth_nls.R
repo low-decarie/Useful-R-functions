@@ -9,7 +9,7 @@ logistic.growth.nls<-function(readings){
   if(class(culture.model)=="try-error"){
     
     fitted.readings$xmid<-NA
-    fitted.readings$No<-NA
+    fitted.readings$N0<-NA
     fitted.readings$K<-NA
     fitted.readings$r<-NA
     fitted.readings$predicted<-NA
@@ -27,12 +27,12 @@ logistic.growth.nls<-function(readings){
     scal<-parameters[3]
     
     #convert parameters to those used in ecological growth equations
-    No<-Asym/(1+exp(xmid/scal))
+    N0<-Asym/(1+exp(xmid/scal))
     K<-Asym
     r<-  1/scal
     
     fitted.readings$xmid<-xmid
-    fitted.readings$No<-No
+    fitted.readings$N0<-N0
     fitted.readings$K<-K
     fitted.readings$r<-r
     fitted.readings$predicted<-predict(culture.model)
