@@ -25,7 +25,8 @@ logistic.growth.mle.norm<-function(readings, printer=F){
     ## Sanity bounds
     if(any(c(Nt<0,
              Nt>1.5, 
-             K>1.5))){likelihood<-NA}
+             K>1.5,
+             N0<0))){likelihood<-NA}
     
     
     return(likelihood)
