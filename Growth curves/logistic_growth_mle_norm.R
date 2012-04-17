@@ -5,7 +5,7 @@ logistic.growth.mle.norm<-function(readings, printer=F){
   fitted.readings<-readings
   
   #Log likelyhood function to be minimized
-  like.growth<-function(parameters=c(2, 1, 0.01,2), t, Nt, ABS){
+  like.growth<-function(parameters=c(1, 1, 0.01,0.1), t, Nt, ABS){
     
     #Parameter extraction
     K<-parameters[1]
@@ -32,7 +32,7 @@ logistic.growth.mle.norm<-function(readings, printer=F){
     
   }
   
-  fit<-with(readings, optim(par=c(2, 1, 10^-10,2),
+  fit<-with(readings, optim(par=c(1, 1, 0.01,0.1),
                             fn=like.growth,
                             t=Time,
                             ABS=ABS))
