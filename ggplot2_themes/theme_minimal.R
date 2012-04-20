@@ -86,6 +86,6 @@ theme_minimal <- function (base_size = 12, base_family = "")
                  plot.margin = unit(c(1, 1, 0.5, 0.5), "lines")), 
             class = "options")
 }
->>>>>>> styling
+
 
 theme_set(theme_minimal())
