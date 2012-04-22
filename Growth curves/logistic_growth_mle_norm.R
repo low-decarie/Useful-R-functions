@@ -1,4 +1,4 @@
-logistic.growth.mle.norm<-function(readings, printer=F){try.test<-try({
+logistic.growth.mle.norm<-function(readings, printer=F, upper=readings$upper){try.test<-try({
   
   if(printer){print(unique(readings$culture))}
   
@@ -24,8 +24,8 @@ logistic.growth.mle.norm<-function(readings, printer=F){try.test<-try({
     
     ## Sanity bounds
     if(any(c(Nt<0,
-             Nt>1.5, 
-             K>1.5,
+             Nt>upper, 
+             K>upper,
              N0<0))){likelihood<-NA}
     
     
@@ -40,7 +40,7 @@ logistic.growth.mle.norm<-function(readings, printer=F){try.test<-try({
   
 
   
-  #  print(fit$par)
+  #extract fit values
   K<-fit$par[1]
   r<-fit$par[2]
   N0<-fit$par[3]
@@ -56,7 +56,8 @@ logistic.growth.mle.norm<-function(readings, printer=F){try.test<-try({
  
 
 })
-                                                        
+  
+   #Pad with NAs for failed fits                                                             
    if(class(try.test)=="try-error"){
      fitted.readings$N0<-NA
      fitted.readings$K<-NA
@@ -66,6 +67,6 @@ logistic.growth.mle.norm<-function(readings, printer=F){try.test<-try({
   
    return(fitted.readings)                                                     
                                                         
-  }
+}
                                                             
                                         

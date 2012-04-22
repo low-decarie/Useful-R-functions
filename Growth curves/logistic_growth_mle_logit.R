@@ -3,7 +3,7 @@
 # Time must start at values>0 (1) or Nt-N0 results in 0
 ###########
 
-
+#Load the logitnorm function
 library(devtools)
 source_url("https://raw.github.com/edielivon/Useful-R-functions/master/Growth%20curves/logitnorm.R")
 
