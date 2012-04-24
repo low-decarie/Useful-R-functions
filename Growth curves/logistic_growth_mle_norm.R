@@ -32,7 +32,7 @@ logistic.growth.mle.norm<-function(readings, printer=F, upper=readings$upper){tr
              K>upper,
              N0<0,
              r<0,
-             sd<0,
+             st.dev<0,
              sd>2))){likelihood<-NA}
     
     
