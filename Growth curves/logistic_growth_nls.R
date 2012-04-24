@@ -1,4 +1,6 @@
-logistic.growth.nls<-function(readings, upper=10){
+logistic.growth.nls<-function(readings, upper=10, printer=T){
+  
+  if(printer){print(unique(readings$culture))}
   
   fitted.readings<-readings
   
