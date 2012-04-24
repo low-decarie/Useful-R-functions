@@ -17,8 +17,8 @@ logistic.growth.nls<-function(readings, upper=10, printer=T){
     fitted.readings$logistic.nls.N0<-NA
     fitted.readings$logistic.nls.K<-NA
     fitted.readings$logistic.nls.r<-NA
-    fitted.readings$logistic.nls.r.lower<-NA
-    fitted.readings$logistic.nls.r.upper<-NA
+    #fitted.readings$logistic.nls.r.lower<-NA
+    #fitted.readings$logistic.nls.r.upper<-NA
     fitted.readings$logistic.nls.predicted<-NA
     
     
@@ -39,10 +39,10 @@ logistic.growth.nls<-function(readings, upper=10, printer=T){
     K<-Asym
     r<-  1/scal
     
-    interval<-confint(culture.model)
+    #interval<-confint(culture.model)
     
-    r.lower<-1/interval["scal", "97.5%"]
-    r.upper<-1/interval["scal", "2.5%"]
+    #r.lower<-1/interval["scal", "97.5%"]
+    #r.upper<-1/interval["scal", "2.5%"]
     
     fitted.readings$logistic.nls.xmid<-xmid
     fitted.readings$logistic.nls.N0<-N0
@@ -50,8 +50,8 @@ logistic.growth.nls<-function(readings, upper=10, printer=T){
     fitted.readings$logistic.nls.K<-K
     
     fitted.readings$logistic.nls.r<-r
-    fitted.readings$logistic.nls.r.lower<-r.lower
-    fitted.readings$logistic.nls.r.upper<-r.upper
+    #fitted.readings$logistic.nls.r.lower<-r.lower
+    #fitted.readings$logistic.nls.r.upper<-r.upper
     
     fitted.readings$logistic.nls.predicted<-predict(culture.model)
     
