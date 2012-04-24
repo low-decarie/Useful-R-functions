@@ -26,14 +26,14 @@ logistic.growth.mle.norm<-function(readings, printer=F, upper=readings$upper){tr
     #Nomral distribution
     likelihood<- -sum(dnorm(ABS, Nt, sd=st.dev, log=T))
     
-    # Sanity bounds (remove if using "L-BFGS-B" or
+    # Sanity bounds (remove if using "L-BFGS-B" or constrOptim
     if(any(c(Nt<0,
              Nt>upper, 
              K>upper,
              N0<0,
              r<0,
              st.dev<0,
-             sd>2))){likelihood<-NA}
+             st.dev>upper))){likelihood<-NA}
     
     
     return(likelihood)
