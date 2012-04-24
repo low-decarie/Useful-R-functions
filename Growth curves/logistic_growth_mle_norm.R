@@ -1,4 +1,6 @@
-logistic.growth.mle.norm<-function(readings, printer=F, upper=readings$upper){try.test<-try({
+#logistic.growth.mle.norm
+
+logistic.growth.mle.norm<-function(readings, printer=F, upper=readings$upper){
   
   if(printer){print(unique(readings$culture))}
   
