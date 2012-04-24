@@ -4,8 +4,17 @@ logistic.growth.nls<-function(readings, upper=10, printer=T){
   
   fitted.readings<-readings
   
-  culture.model <- try(nls(formula=ABS ~ SSlogis(Time,Asym, xmid, scal),
+  
+  lower.v=c(0,0,0)
+  upper.v=c(upper,Inf, Inf)
+  start.values<-getInitial(ABS~SSlogis(Time,Asym, xmid, scal), data=readings)
+  start.values[start.values<=lower.v]<-10^-5
+  start.values[start.values>=upper.v]<-upper.v[start.values>=upper.v]-10^-5
+  
+  
+  culture.model <- try(nls(formula=ABS ~  Asym/(1+exp((xmid-Time)/scal)),
                            data=readings,
+                           start=start.values,
                            na.action=na.exclude,
                            algorithm="port",
                            lower=c(0,0,0),
