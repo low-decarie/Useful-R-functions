@@ -7,21 +7,29 @@ exponential.growth.nls<-function(readings){
   exp.model<-try(nls(formula =ABS ~ ABS0 * 2 ^ (growth.rate * Time),
                       start = list(ABS0 = 0.1, growth.rate = 1),
                       data=readings,
-                      na.action=na.exclude))
+                      na.action=na.exclude,
+                     algorithm="port",
+                     lower=c(0,0),
+                     upper=Inf))
   
   if(class(exp.model)=="try-error"){
     
-    fitted.readings$N0<-NA
-    fitted.readings$r<-NA
-    fitted.readings$predicted<-NA
+    fitted.readings$exp.N0<-NA
+    fitted.readings$exp.r<-NA
+    fitted.readings$exp.predicted<-NA
     
   }else{
     
     exp.parameters<-t(data.frame(coef(exp.model,matrix=T)))
     
-    fitted.readings$N0<-exp.parameters[1]
-    fitted.readings$r<-exp.parameters[2]
-    fitted.readings$predicted<-predict(exp.model)
+    interval<-confint(exp.model)
+    
+    fitted.readings$exp.N0<-exp.parameters[1]
+    fitted.readings$exp.r<-exp.parameters[2]
+    fitted.readings$exp.r.lower<-interval["growth.rate", "2.5%"]
+    fitted.readings$exp.r.upper<-interval["growth.rate", "97.5%"]
+    
+    fitted.readings$exp.predicted<-predict(exp.model)
     
   }
   

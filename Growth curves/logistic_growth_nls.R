@@ -1,18 +1,24 @@
-logistic.growth.nls<-function(readings){
+logistic.growth.nls<-function(readings, upper=3.5){
   
   fitted.readings<-readings
   
   culture.model <- try(nls(formula=ABS ~ SSlogis(Time,Asym, xmid, scal),
                            data=readings,
-                           na.action=na.exclude))
+                           na.action=na.exclude,
+                           algorithm="port",
+                           lower=c(0,0,0),
+                           upper=c(upper,Inf, Inf)))
   
   if(class(culture.model)=="try-error"){
     
-    fitted.readings$xmid<-NA
-    fitted.readings$N0<-NA
-    fitted.readings$K<-NA
-    fitted.readings$r<-NA
-    fitted.readings$predicted<-NA
+    fitted.readings$logistic.nls.xmid<-NA
+    fitted.readings$logistic.nls.N0<-NA
+    fitted.readings$logistic.nls.K<-NA
+    fitted.readings$logistic.nls.r<-NA
+    fitted.readings$logistic.nls.r.lower<-NA
+    fitted.readings$logistic.nls.r.upper<-NA
+    fitted.readings$logistic.nls.predicted<-NA
+    
     
   }else{
     
@@ -31,11 +37,21 @@ logistic.growth.nls<-function(readings){
     K<-Asym
     r<-  1/scal
     
-    fitted.readings$xmid<-xmid
-    fitted.readings$N0<-N0
-    fitted.readings$K<-K
-    fitted.readings$r<-r
-    fitted.readings$predicted<-predict(culture.model)
+    interval<-confint(culture.model)
+    
+    r.lower<-1/interval["scal", "97.5%"]
+    r.upper<-1/interval["scal", "2.5%"]
+    
+    fitted.readings$logistic.nls.xmid<-xmid
+    fitted.readings$logistic.nls.N0<-N0
+    
+    fitted.readings$logistic.nls.K<-K
+    
+    fitted.readings$logistic.nls.r<-r
+    fitted.readings$logistic.nls.r.lower<-r.lower
+    fitted.readings$logistic.nls.r.upper<-r.upper
+    
+    fitted.readings$logistic.nls.predicted<-predict(culture.model)
     
     
   }

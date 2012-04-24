@@ -1,3 +1,11 @@
+#a translation of an equation produced by Yves Prairie @ UQAM
+
+#limited to low salinity and low alkalinity water
+#not appropriate for seawater
+
+
+
+
 headCO2<-function(startCO2=0,
                   raw.pCO2,
                   initial.temp,
@@ -23,30 +31,33 @@ headCO2<-function(startCO2=0,
 	return(pCO2)
 	}
 
-# #Example
-# #Freshwater
-# start<-c(5,5,380,380,1500)
-# raw<-c(190, 220, 349, 355, 930)
-# CO2.calc<-headCO2(startCO2=start,
-#                   raw.pCO2=raw,
-#                   initial.temp=29.8,
-#                   final.temp=30.2,
-#                   pressure=101.325,
-#                   head.ratio=1,
-#                   salinity=0.4)
-# plot(CO2.calc~start)
-# summary(lm(CO2.calc~start))
-# 
-# #seawater
-# start<-c(5,5,380,378,1040, 1200)
-# raw<-c(296, 277, 401, 401, 606, 630)
-# CO2.calc<-headCO2(startCO2=start,
-#                   raw.pCO2=raw,
-#                   initial.temp=30.2,
-#                   final.temp=30.4,
-#                   pressure=101.325,
-#                   head.ratio=1,
-#                   salinity=33.2)
-# plot(CO2.calc~start)
-# summary(lm(CO2.calc~start))
+#Example from in field measurements
+#Freshwater
+freshwater.example<-function(){
+start<-c(5,5,380,380,1500)
+raw<-c(190, 220, 349, 355, 930)
+CO2.calc<-headCO2(startCO2=start,
+                  raw.pCO2=raw,
+                  initial.temp=29.8,
+                  final.temp=30.2,
+                  pressure=101.325,
+                  head.ratio=1,
+                  salinity=0.4)
+plot(CO2.calc~start)
+summary(lm(CO2.calc~start))
+}
 
+#seawater
+seawater.example<-function(){
+start<-c(5,5,380,378,1040, 1200)
+raw<-c(296, 277, 401, 401, 606, 630)
+CO2.calc<-headCO2(startCO2=start,
+                  raw.pCO2=raw,
+                  initial.temp=30.2,
+                  final.temp=30.4,
+                  pressure=101.325,
+                  head.ratio=1,
+                  salinity=33.2)
+plot(CO2.calc~start)
+summary(lm(CO2.calc~start))
+}
