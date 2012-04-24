@@ -1,3 +1,7 @@
+#Exponential fitting of growth data using nls with bounds and port algorythm
+
+
+
 exponential.growth.nls<-function(readings){
   
   fitted.readings<-readings
