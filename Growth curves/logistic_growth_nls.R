@@ -1,4 +1,4 @@
-logistic.growth.nls<-function(readings, upper=3.5){
+logistic.growth.nls<-function(readings, upper=10){
   
   fitted.readings<-readings
   
