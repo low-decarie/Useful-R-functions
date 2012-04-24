@@ -40,7 +40,9 @@ logistic.growth.mle.norm<-function(readings, printer=F, upper=readings$upper){tr
     
   }
   
-   fit<-optim(par=c(1, 1, 0.01,0.1),
+  try.test<-try({
+    
+    fit<-optim(par=c(1, 1, 0.01,0.1),
                              fn=like.growth,
                       readings=readings)
    
@@ -77,9 +79,6 @@ logistic.growth.mle.norm<-function(readings, printer=F, upper=readings$upper){tr
   fitted.readings$logistic.mle.K<-K
   fitted.readings$logistic.mle.r<-r
   fitted.readings$logistic.mle.predicted<-predicted
-   
- 
-
 })
   
    #Pad with NAs for failed fits                                                             
