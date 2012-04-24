@@ -4,7 +4,7 @@
   #SSlogis function with integrated bounds
   #Confidence intervals of parameters using confint)
 
-logistic.growth.nls<-function(readings, upper=10, printer=T){
+logistic.growth.nls<-function(readings, upper=10, printer=T, do.interval=T){
   
   if(printer){print(unique(readings$culture))}
   
@@ -64,20 +64,29 @@ logistic.growth.nls<-function(readings, upper=10, printer=T){
 #     K<-Asym
 #     r<-  1/scal
     
-    interval<-confint(culture.model)
+
+      
     
     fitted.readings$logistic.nls.N0<-parameters["N0"]
     
     fitted.readings$logistic.nls.K<-parameters["K"]
-    fitted.readings$logistic.nls.K.lower<-interval["K", "2.5%"]
-    fitted.readings$logistic.nls.K.upper<-interval["K", "97.5%"]
+
     
     fitted.readings$logistic.nls.r<-parameters["r"]
-    fitted.readings$logistic.nls.r.lower<-interval["r", "2.5%"]
-    fitted.readings$logistic.nls.r.upper<-interval["r", "97.5%"]
+
     
     fitted.readings$logistic.nls.predicted<-predict(culture.model)
     
+    interval<-try(confint(culture.model))   
+    if(any(class(interval)=="try-error", !do.interval)){
+      fitted.readings$logistic.nls.K.lower<-NA
+      fitted.readings$logistic.nls.K.upper<-NA
+      fitted.readings$logistic.nls.r.lower<-NA
+      fitted.readings$logistic.nls.r.upper<-NA}else{
+      fitted.readings$logistic.nls.r.lower<-interval["r", "2.5%"]
+      fitted.readings$logistic.nls.r.upper<-interval["r", "97.5%"]
+      fitted.readings$logistic.nls.K.lower<-interval["K", "2.5%"]
+      fitted.readings$logistic.nls.K.upper<-interval["K", "97.5%"]}
     
   }
   
