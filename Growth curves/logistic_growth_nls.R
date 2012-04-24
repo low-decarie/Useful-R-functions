@@ -33,10 +33,15 @@ logistic.growth.nls<-function(readings, upper=10, printer=T){
   if(class(culture.model)=="try-error"){
     
     fitted.readings$logistic.nls.N0<-NA
+    
     fitted.readings$logistic.nls.K<-NA
+    fitted.readings$logistic.nls.K.lower<-NA
+    fitted.readings$logistic.nls.K.upper<-NA
+    
     fitted.readings$logistic.nls.r<-NA
-    #fitted.readings$logistic.nls.r.lower<-NA
-    #fitted.readings$logistic.nls.r.upper<-NA
+    fitted.readings$logistic.nls.r.lower<-NA
+    fitted.readings$logistic.nls.r.upper<-NA
+    
     fitted.readings$logistic.nls.predicted<-NA
     
     
@@ -59,19 +64,17 @@ logistic.growth.nls<-function(readings, upper=10, printer=T){
 #     K<-Asym
 #     r<-  1/scal
     
-    #interval<-confint(culture.model)
+    interval<-confint(culture.model)
     
-    #r.lower<-1/interval["scal", "97.5%"]
-    #r.upper<-1/interval["scal", "2.5%"]
-    
-
     fitted.readings$logistic.nls.N0<-parameters["N0"]
     
     fitted.readings$logistic.nls.K<-parameters["K"]
+    fitted.readings$logistic.nls.K.lower<-interval["K", "2.5%"]
+    fitted.readings$logistic.nls.K.upper<-interval["K", "97.5%"]
     
     fitted.readings$logistic.nls.r<-parameters["r"]
-    #fitted.readings$logistic.nls.r.lower<-r.lower
-    #fitted.readings$logistic.nls.r.upper<-r.upper
+    fitted.readings$logistic.nls.r.lower<-interval["r", "2.5%"]
+    fitted.readings$logistic.nls.r.upper<-interval["r", "97.5%"]
     
     fitted.readings$logistic.nls.predicted<-predict(culture.model)
     
