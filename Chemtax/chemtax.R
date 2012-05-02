@@ -55,5 +55,10 @@ chemtax<-function(sample.conc, pigment.matrix, baysian=F){
   return(X)
   })
   
+  
+  X<-data.frame(t(X))
+  
+  X$Sample<-rownames(X)
+  
   return(X)
 }
