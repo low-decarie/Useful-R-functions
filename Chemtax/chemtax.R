@@ -51,10 +51,12 @@ chemtax<-function(sample.conc, pigment.matrix, baysian=F){
   xs <- xsample(t(AA),BB,EE,FF,GG,HH, sdB=0.01, jmp=0.025)$X
   pairs(xs, main= "Chemtax, Bayesian sample")
 
-  dev.off()
+
   return(X)
   })
   
+  
+  dev.off()
   
   X<-data.frame(t(X))
   
