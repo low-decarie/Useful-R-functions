@@ -48,5 +48,9 @@ Education
    bolds sequence recovery.R
    Creation of a list of random sequences from the BOLDS database
 
+Chemtax
+   chemtax.R
+   A wrapper to the Chemtax approach provided in Chemtax in the limSolve package
+
 R packages
    Export list of installed packages for re-installation after update
