@@ -44,5 +44,9 @@ Meta analysis
    crossref_get_meta_from_doi.R
       get bibliographic data given DOI
 
+Education
+   bolds sequence recovery.R
+   Creation of a list of random sequences from the BOLDS database
+
 R packages
    Export list of installed packages for re-installation after update
