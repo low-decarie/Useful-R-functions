@@ -1,4 +1,4 @@
-read.microplate.list<-function(file.list="", directory=".", ext="TXT"){
+read.microplate.list<-function(file.list="", directory=".", ext="TXT",...){
 
   
   if(file.list==""){
@@ -9,7 +9,7 @@ read.microplate.list<-function(file.list="", directory=".", ext="TXT"){
   for(file in file.list){
     print(file)
     try({
-        readings.temp<-read.microplate(file)
+        readings.temp<-read.microplate(file,...)
         readings.temp$file<-file
         readings<-rbind(readings, readings.temp)
         })
@@ -17,4 +17,3 @@ read.microplate.list<-function(file.list="", directory=".", ext="TXT"){
   
   return(readings)
 }
-#
