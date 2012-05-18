@@ -1,4 +1,4 @@
-read.microplate.list<-function(file.list="", directory=".", ext="TXT",...){
+read.microplate.list<-function(file.list="", directory=".", ext="TXT",print=TRUE,...){
 
   
   if(file.list==""){
@@ -7,7 +7,7 @@ read.microplate.list<-function(file.list="", directory=".", ext="TXT",...){
   
   readings<-NULL
   for(file in file.list){
-    print(file)
+    if(print){print(file)}
     try({
         readings.temp<-read.microplate(paste(directory,"/",file, sep=""),...)
         readings.temp$file<-file
