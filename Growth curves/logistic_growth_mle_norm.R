@@ -1,6 +1,6 @@
 #logistic.growth.mle.norm
 
-logistic.growth.mle.norm<-function(time, ABS, printer=F, upper=10^6){
+logistic.growth.mle.norm<-function(readings, printer=F, upper=readings$upper){
   
   if(printer){print(unique(readings$culture))}
   
@@ -48,27 +48,7 @@ logistic.growth.mle.norm<-function(time, ABS, printer=F, upper=10^6){
                              fn=like.growth,
                       readings=readings)
    
-
-#      fit<-optim(par=c(1, 1, 0.01,0.1),
-#                                fn=like.growth,
-#                                readings=readings,
-#                                 method="L-BFGS-B",
-#                                upper=c(50, 50, 50, 50),
-#                                lower=c(0,0,0,0))
-  
-#        fit<-constrOptim(theta=c(1, 1, 0.01,0.1),
-#                                  f=like.growth,
-#                                  readings=readings,
-#                         ui=??,
-#                         ci=??)
-#
-#  
-#  library(stat4)   
-#  fit<-mle(start=c(1, 1, 0.01,0.1),
-#              minuslogl=like.growth,
-#              readings=readings)
-  
-  
+ 
   #extract fit values
   K<-fit$par[1]
   r<-fit$par[2]
