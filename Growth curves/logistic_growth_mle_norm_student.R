@@ -1,5 +1,4 @@
 #logistic.growth.mle.norm
-
 logistic.growth.mle.norm<-function(time, ABS, printer=F, upper=10^6){
   
   if(printer){print(unique(readings$culture))}
