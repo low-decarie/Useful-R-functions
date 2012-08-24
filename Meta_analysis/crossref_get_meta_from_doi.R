@@ -1,6 +1,8 @@
 meta_from_doi<-function(username,
                         doi="10.1006/jmbi.2000.4282"){
   
+  try.test<-try({
+  
   
   doc<-xmlTreeParse(readLines(paste("http://www.crossref.org/openurl/?pid=",
                                     username,
@@ -38,6 +40,21 @@ meta_from_doi<-function(username,
                    first_page=first_page,
                    last_page=last_page,
                    year=year)
+  })
+  
+  if(class(try.test)=="try-error"){
+  
+  meta<-data.frame(doi=doi,
+                   journal=NA,
+                   first.author=NA,
+                   last.author=NA,
+                   article.title=NA,
+                   volume=NA,
+                   issue=NA,
+                   first_page=NA,
+                   last_page=NA,
+                   year=NA)
+  }
   
   return(meta)
   
