@@ -30,6 +30,19 @@ meta_from_doi<-function(username,
   first_page<-xpathSApply(root, "//x:first_page", xmlValue, namespaces = "x")
   last_page<-xpathSApply(root, "//x:last_page", xmlValue, namespaces = "x")
   
+  for(i in c("doi.list",
+             "journal_title",
+             "first.author",
+             "last.author",
+             "article_title",
+             "volume",
+             "issue",
+             "first_page",
+             "last_page",
+             "year")){
+    if(class(get(i))!="character"){assign(i, NA)}
+  }
+  
   meta<-data.frame(doi=doi.list,
                    journal=journal_title,
                    first.author=paste(given_name[1], surname[1]),
