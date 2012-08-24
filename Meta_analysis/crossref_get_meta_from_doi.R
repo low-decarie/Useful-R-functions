@@ -23,11 +23,20 @@ meta_from_doi<-function(username,
   
   article_title<-xpathSApply(root, "//x:article_title", xmlValue, namespaces = "x")
   
+  volume<-xpathSApply(root, "//x:volume", xmlValue, namespaces = "x")
+  issue<-xpathSApply(root, "//x:issue", xmlValue, namespaces = "x")
+  first_page<-xpathSApply(root, "//x:first_page", xmlValue, namespaces = "x")
+  last_page<-xpathSApply(root, "//x:last_page", xmlValue, namespaces = "x")
+  
   meta<-data.frame(doi=doi.list,
                    journal=journal_title,
                    first.author=paste(given_name[1], surname[1]),
                    last.author=paste(given_name[length(given_name)], surname[length(surname)]),
-                   article.title=article_title
+                   article.title=article_title,
+                   volume=volume,
+                   issue=issue,
+                   first_page=first_page,
+                   last_page=last_page,
                    year=year)
   
   return(meta)
