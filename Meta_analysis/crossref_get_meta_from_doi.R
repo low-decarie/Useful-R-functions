@@ -27,6 +27,7 @@ meta_from_doi<-function(username,
                    journal=journal_title,
                    first.author=paste(given_name[1], surname[1]),
                    last.author=paste(given_name[length(given_name)], surname[length(surname)]),
+                   article.title=article_title
                    year=year)
   
   return(meta)
