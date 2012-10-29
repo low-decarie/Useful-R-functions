@@ -1,0 +1,1 @@
+http://gateway.isiknowledge.com/gateway/Gateway.cgi?sid=ISI:WoS&aufirst=AUFIRST&aulast=AULAST&issn=ISSN&isbn=ISBN&atitle=ATITLE&title=TITLE&volume=VOLUME&issue=ISSUE&date=DATE&spage=SPAGE&epage=EPAGE

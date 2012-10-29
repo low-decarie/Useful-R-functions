@@ -1,2 +1,3 @@
 package.list<-rownames(installed.packages())
-save(package.list, file="/Users/LowDecarie/Documents/package_list.R")
+save(package.list, file="~/Documents/Useful-R-functions/R packages/package_list.RData")
+write.csv(package.list, file="~/Documents/Useful-R-functions/R packages/package_list.csv")
