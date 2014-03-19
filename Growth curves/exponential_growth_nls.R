@@ -9,7 +9,7 @@ exponential.growth.nls<-function(readings){
   ABS<-readings$ABS
   
   exp.model<-try(nls(formula =ABS ~ ABS0 * 2 ^ (growth.rate * Time),
-                      start = list(ABS0 = 0.1, growth.rate = 1),
+                      start = list(ABS0 = min(ABS,na.rm=T), growth.rate = 1),
                       data=readings,
                       na.action=na.exclude,
                      algorithm="port",
