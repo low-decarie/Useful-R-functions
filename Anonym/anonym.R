@@ -15,5 +15,3 @@ anonym<-function(df){
     return(DF)}
   df<-level.id.df(df)
   return(df)}
-
-anonym(df)

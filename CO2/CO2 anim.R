@@ -88,4 +88,4 @@ saveVideo(CO2.anim(),
           other.opts = "-b 10000k")
 
 
-save(CO2, file="/Users/LowDecarie/Documents/PhD/Reports/Conferences/CSEE/CSEE 2010/global co2 concentration/CO2data.R")
+save(CO2, file="~/Desktop/")
