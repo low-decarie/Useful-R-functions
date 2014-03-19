@@ -4,7 +4,7 @@
   #SSlogis function with integrated bounds
   #Confidence intervals of parameters using confint)
 
-logistic.growth.nls<-function(readings, upper=10, printer=T, do.interval=T){
+logistic.growth.nls<-function(readings, printer=T, do.interval=T){
   
   if(printer){print(unique(readings$culture))}
   
@@ -19,7 +19,7 @@ logistic.growth.nls<-function(readings, upper=10, printer=T, do.interval=T){
   #
   #Initially used ABS~SSlogis, but it would often start out of bounds
   
-  start.values=c("K"=1, "r"=1, "N0"=0.01)
+  start.values=c("K"=max(readings$ABS, na.rm=T), "r"=1, "N0"=min(readings$ABS, na.rm=T))
   
   
   culture.model <- try(nls(formula=ABS ~(K*N0*exp(r*Time) ) / (K + N0 * (exp(r*Time)-1)),
@@ -28,7 +28,7 @@ logistic.growth.nls<-function(readings, upper=10, printer=T, do.interval=T){
                            na.action=na.exclude,
                            algorithm="port",
                            lower=c(0,0,0),
-                           upper=c(upper,Inf, Inf)))
+                           upper=c(2*max(readings$ABS, na.rm=T),Inf, Inf)))
   
   if(class(culture.model)=="try-error"){
     
