@@ -4,6 +4,7 @@ CO2
    headspace_pCO2.R
       a translation of an equation produced by Yves Prairie @ UQAM
          status: complete
+         warning: does not appear to work at higher (aka seawater) salinity levels
    CO2 calc
       a translation of a BASIC program written by Ernie Lewis
          status: work in progress
